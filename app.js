@@ -17,7 +17,7 @@ const reviews = mongoose.model("Review", {
   title: String,
   movieTitle: String,
   description: String,
-  date: Date
+  rating: Number
 })
 
 /* OUR MOCK ARRAY OF PROJECTS
