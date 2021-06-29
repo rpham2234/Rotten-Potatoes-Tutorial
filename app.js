@@ -1,16 +1,23 @@
-const express = require('express')
-const app = express()
+//Initialize all the frameworks we'll need for this project
 
-//to use handlebars
-var exphbs = require('express-handlebars');
+const express = require('express') // express.js
+const app = express() 
+const bodyParser = require('body-parser') //body-parser (Express.js module to read data submitted in forms.)
+var exphbs = require('express-handlebars'); //handlebars
+const mongoose = require("mongoose"); //MongoDB
 
-//we need mongoDB lol
-const mongoose = require("mongoose");
+//Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/rotten-potatoes', { useNewUrlParser: true, useUnifiedTopology: true });
 
+// this will contain our form data, and we'll submit it to MongoDB
+app.use(bodyParser.urlencoded({ extended: true }));
+
+//MongoDB model. This is like a class, or a template to store our form data on MongoDB
 const reviews = mongoose.model("Review", {
   title: String,
-  movieTitle: String
+  movieTitle: String,
+  description: String,
+  date: Date
 })
 
 /* OUR MOCK ARRAY OF PROJECTS
@@ -30,6 +37,22 @@ app.get('/', (req, res) => {
 */
 app.get('/', (req, res) => {
     res.render("reviews-index", {reviews: reviews});
+})
+
+app.get('/reviews/new', (req, res) => {
+  res.render("reviews-new", {});
+})
+
+//create
+app.post('/reviews', (req, res) => {
+  console.log(req.body); //contents that will be put in the model instance
+  reviews.create(req.body).then((review) => {
+    console.log(reviews); //logs the model instance itself.
+    res.redirect("/");
+  }).catch((err) => {
+    console.log(err.message);
+  })
+  // res.render('reviews-new', {});
 })
 
 reviews.find()
