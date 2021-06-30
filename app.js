@@ -4,10 +4,11 @@ const express = require('express') // express.js
 const app = express() 
 const bodyParser = require('body-parser') //body-parser (Express.js module to read data submitted in forms.)
 var exphbs = require('express-handlebars'); //handlebars
-const mongoose = require("mongoose"); //MongoDB
+const mongoose = require("mongoose"); //Express.js requires this to communicate with MongoDB
 
 //Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/rotten-potatoes', { useNewUrlParser: true, useUnifiedTopology: true });
+
 
 // this will contain our form data, and we'll submit it to MongoDB
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,11 +28,12 @@ let reviews = [
     {title: "Too many bee puns", movieTitle: "The Bee Movie"}
   ]
 */
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-/*/Routes
-app.get('/', (req, res) => {
+//Routes
+
+/*app.get('/', (req, res) => {
     res.render('home', { msg: 'Handlebars are Cool!' });
   })
 */
@@ -54,6 +56,16 @@ app.post('/reviews', (req, res) => {
   })
   // res.render('reviews-new', {});
 })
+
+// SHOW
+app.get('/reviews/:id', (req, res) => {
+  res.send("im a review")
+  reviews.findById(req.params.id).then((reviews) => {
+    res.render("reviews-show", {review: reviews})
+  }).catch((err) => {
+    console.log(err.message);
+  })
+});
 
 reviews.find()
   .then(review => {
