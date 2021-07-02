@@ -5,4 +5,9 @@
 <p>{{review.description}}</p>
 <p>{{review.rating}}</p>
 
+<!-- Delete button -->
+<p><form method="POST" action="/reviews/{{review._id}}?_method=DELETE">
+    <button type="submit">Delete</button>
+</form></p>
+
 <p><a href="/reviews/{{review._id}}/edit">Edit</a></p>
