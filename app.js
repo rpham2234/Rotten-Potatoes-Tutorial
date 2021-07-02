@@ -86,7 +86,7 @@ app.get('/reviews/:id/edit', (req, res) => {
 
 // update reviews.
 app.put('/reviews/:id', (req, res) => {
-  Review.findByIdAndUpdate(req.params.id, req.body).lean()
+  Review.findByIdAndUpdate(req.params.id, req.body).lean() 
     .then(review => {
       res.redirect(`/reviews/${review._id}`)
     })

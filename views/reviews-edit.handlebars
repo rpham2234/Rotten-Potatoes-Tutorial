@@ -3,6 +3,15 @@
   <!-- BUTTON -->
   <p>
     <button type="submit">Save Review</button>
+    <button type="reset" onclick="goback()">Cancel</button>
   </p>
   <p>hello {{review._id}}</p>
 </form>
+<script>
+  function goback() {
+    discard = confirm("Discard changes?"); //Cancel button script.
+    if (discard) {
+      window.history.go(-1);
+    }
+  }
+</script>
