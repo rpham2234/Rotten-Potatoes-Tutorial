@@ -5,6 +5,7 @@ const app = express()
 const bodyParser = require('body-parser') //body-parser (Express.js module to read data submitted in forms.)
 var exphbs = require('express-handlebars'); //handlebars
 const mongoose = require("mongoose"); //Express.js requires this to communicate with MongoDB
+const methodOverride = require("method-override"); //intercepts our PUT requests.
 
 //Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/rotten-potatoes', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -12,6 +13,9 @@ mongoose.connect('mongodb://localhost:27017/rotten-potatoes', { useNewUrlParser:
 
 // this will contain our form data, and we'll submit it to MongoDB
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//this allows us to edit or delete existing data on MongoDB
+app.use(methodOverride('_method'));
 
 //MongoDB model. This is like a class, or a template to store our form data on MongoDB
 const Review = mongoose.model("Review", {
@@ -49,7 +53,7 @@ app.get('/', (req, res) => {
 
 //opens a form to create the review
 app.get('/reviews/new', (req, res) => {
-  res.render("reviews-new", {});
+  res.render("reviews-new", {title: "New Review"});
 })
 
 //saves review to the database.
@@ -72,6 +76,24 @@ app.get('/reviews/:id', (req, res) => {
     console.log(err.message);
   })
 });
+
+// edit existing reviews
+app.get('/reviews/:id/edit', (req, res) => {
+  Review.findById(req.params.id).lean().then((review) => {
+    res.render('reviews-edit', {review: review});
+  })
+})
+
+// update reviews.
+app.put('/reviews/:id', (req, res) => {
+  Review.findByIdAndUpdate(req.params.id, req.body).lean()
+    .then(review => {
+      res.redirect(`/reviews/${review._id}`)
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
+})
 
 app.listen(3000, () => {
   console.log('App listening on port 3000!')

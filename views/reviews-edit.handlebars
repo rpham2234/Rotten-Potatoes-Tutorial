@@ -1,9 +1,8 @@
-<form method="POST" action="/reviews">
+<form method="POST" action="/reviews/{{review._id}}?_method=PUT">
   {{> reviews-form}}
-
   <!-- BUTTON -->
   <p>
     <button type="submit">Save Review</button>
   </p>
-
+  <p>hello {{review._id}}</p>
 </form>
