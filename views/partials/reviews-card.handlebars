@@ -1,0 +1,9 @@
+{{#each reviews}}
+        <div class="card" style="width: 22rem;">
+            <div class="card-block">
+                <h2 class="card-title">{{this.title}}</a></h2>
+                <h4 class="card-text">{{this.movieTitle}}</h4>
+                <a href="/reviews/{{this._id}}" class="btn btn-primary">See full review</a>
+            </div>
+        </div>
+{{/each}}

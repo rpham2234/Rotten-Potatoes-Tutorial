@@ -1,24 +1,26 @@
 <fieldset>
   <legend>{{title}}</legend>
   <!-- TITLE -->
-  <p>
+  <div class="form-group">
     <label for="review-title">Title</label><br>
-    <input id="review-title" type="text" name="title" value="{{review.title}}"/>
-  </p>
+    <input class="form-control" id="review-title" type="text" name="title" value="{{review.title}}"/>
+  </div>
 
   <!-- MOVIE TITLE -->
-  <p>
+  <div class="form-group">
     <label for="movie-title">Movie Title</label><br>
-    <input id="movie-title" type="text" name="movieTitle" value="{{review.movieTitle}}" />
-  </p>
+    <input class="form-control" id="movie-title" type="text" name="movieTitle" value="{{review.movieTitle}}" />
+  </div>
 
   <!-- DESCRIPTION -->
-  <p>
+  <div class="form-group">
     <label for="review-description">Description</label><br>
-    <textarea id="review-description" name="description" rows="10" />{{review.description}}</textarea>
-  </p>
+    <textarea class="form-control" id="review-description" name="description" rows="10" />{{review.description}}</textarea>
+  </div>
+</fieldset>
 
   <!--Rating-->
+  <div class="form-group">
   <p>
       
         <label for="rating">Rating:</label>

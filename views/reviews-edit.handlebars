@@ -1,12 +1,16 @@
-<form method="POST" action="/reviews/{{review._id}}?_method=PUT">
-  {{> reviews-form}}
-  <!-- BUTTON -->
-  <p>
-    <button type="submit">Save Review</button>
-    <button type="reset" onclick="goback()">Cancel</button>
-  </p>
-  <p>hello {{review._id}}</p>
-</form>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <form method="POST" action="/reviews/{{review._id}}?_method=PUT">
+    {{> reviews-form}}
+    <!-- BUTTON -->
+    <p>
+      <button type="submit" class="btn btn-primary">Save Review</button>
+      <button type="reset" class="btn btn-primary" onclick="goback()">Cancel</button>
+    </p>
+    <p>hello {{review._id}}</p>
+    </form>
+  </div>
+</div>
 <script>
   function goback() {
     discard = confirm("Discard changes?");

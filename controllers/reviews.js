@@ -51,7 +51,7 @@ module.exports = (app) => {
   // edit existing reviews
   app.get('/reviews/:id/edit', (req, res) => {
     Review.findById(req.params.id).lean().then((review) => {
-      res.render('reviews-edit', {review: review});
+      res.render('reviews-edit', {review: review, title: "Edit Review"});
     })
   })
 
