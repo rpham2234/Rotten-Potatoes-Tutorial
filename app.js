@@ -7,10 +7,10 @@ var exphbs = require('express-handlebars'); //handlebars
 const mongoose = require("mongoose"); //Express.js requires this to communicate with MongoDB
 const methodOverride = require("method-override"); //intercepts our PUT requests.
 
-
+const port = process.env.PORT || 3000;
 
 //Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/rotten-potatoes', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/rotten-potatoes', { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // this will contain our form data, and we'll submit it to MongoDB
@@ -36,8 +36,8 @@ app.set('view engine', 'handlebars');
 
 
 
-app.listen(3000, () => {
-  console.log('App listening on port 3000!')
+app.listen(port, () => {
+  console.log(`App listening on port ${port}!`)
 })
 
 module.exports = app;

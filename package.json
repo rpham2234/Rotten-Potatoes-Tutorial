@@ -4,6 +4,7 @@
   "description": "A custom movie review website (Rotten tomatoes knockoff)",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "nodemon --exec mocha -R min"
   },
   "author": "Richard Pham",
