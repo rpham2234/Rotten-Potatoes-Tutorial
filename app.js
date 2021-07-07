@@ -10,7 +10,7 @@ const methodOverride = require("method-override"); //intercepts our PUT requests
 const port = process.env.PORT || 3000;
 
 //Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://Richard:JUk1mEZXrOmdOrzG@rotten-potatoes.dfo9m.mongodb.net/rotten-potatoes?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://Richard:ZOIbmmHSk9Dvnt1b@rotten-potatoes.dfo9m.mongodb.net/rotten-potatoes', { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // this will contain our form data, and we'll submit it to MongoDB
