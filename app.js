@@ -10,7 +10,7 @@ const methodOverride = require("method-override"); //intercepts our PUT requests
 const port = process.env.PORT || 3000;
 
 //Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://Richard:ZOIbmmHSk9Dvnt1b@rotten-potatoes.dfo9m.mongodb.net/rotten-potatoes', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI || 'database url', { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // this will contain our form data, and we'll submit it to MongoDB
@@ -23,6 +23,7 @@ app.use(methodOverride('_method'));
 
 //Locally added Modules. Our routes live here.
 const reviews = require('./controllers/reviews')(app);
+const comments = require('./controllers/comments')(app);
 
 /* OUR MOCK ARRAY OF PROJECTS
 let reviews = [

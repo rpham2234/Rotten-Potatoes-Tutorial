@@ -4,6 +4,7 @@
 module.exports = (app) => {
 
   const Review = require('../models/review');
+  const Comment = require('../models/comment')
 
   //Routes
   /* Test page
@@ -41,8 +42,14 @@ module.exports = (app) => {
 
   //show single review
   app.get('/reviews/:id', (req, res) => {
+    console.log(req.params.id)
+    //finds the review
     Review.findById(req.params.id).lean().then((review) => {
-      res.render("reviews-show", {review: review})
+      Comment.find({ reviewId: req.params.id }).lean().then(comments => {
+        // respond with the template with both values
+        console.log(comments)
+        res.render('reviews-show', { review: review, comments: comments })
+      })
     }).catch((err) => {
       console.log(err.message);
     })

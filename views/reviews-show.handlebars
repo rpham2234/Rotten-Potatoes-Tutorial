@@ -10,6 +10,10 @@
         <button class="btn btn-primary" type="submit">Delete</button>
     </form></p>
 
+    {{#each comments}}
+      {{> comment}}
+    {{/each}}
+
     <hr>
     {{> comment-form}}
   </div>

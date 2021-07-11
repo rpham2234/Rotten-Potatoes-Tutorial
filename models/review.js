@@ -9,4 +9,5 @@ const Review = mongoose.model("Review", {
     rating: Number
   })
 
+//Exports model
 module.exports = Review
