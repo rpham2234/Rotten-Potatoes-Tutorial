@@ -5,6 +5,7 @@ module.exports = (app) => {
 
   const Review = require('../models/review');
   const Comment = require('../models/comment')
+  const moment = require("moment")
 
   //Routes
   /* Test page
@@ -45,10 +46,13 @@ module.exports = (app) => {
     console.log(req.params.id)
     //finds the review
     Review.findById(req.params.id).lean().then((review) => {
+      let createdAt = review.createdAt;
+      review.createdAtFormatted = moment(createdAt).format("MM/DD/yyyy, HH:mm")
       Comment.find({ reviewId: req.params.id }).lean().then(comments => {
         // respond with the template with both values
-        console.log(comments)
+        comments.createdAtFormat = moment(comments.createdAt).format("MM/DD/yyyy, HH:mm")
         res.render('reviews-show', { review: review, comments: comments })
+        console.log(comments)
       })
     }).catch((err) => {
       console.log(err.message);
