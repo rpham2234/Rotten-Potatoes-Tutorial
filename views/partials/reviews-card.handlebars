@@ -1,9 +1,18 @@
-{{#each reviews}}
-        <div class="card" style="width: 22rem;">
-            <div class="card-block">
-                <h2 class="card-title">{{this.title}}</a></h2>
-                <h4 class="card-text">{{this.movieTitle}}</h4>
-                <a href="/reviews/{{this._id}}" class="btn btn-primary">See full review</a>
-            </div>
-        </div>
-{{/each}}
+<div class="card mb-3">
+  <h3 class="card-header">Review for: {{this.movieTitle}}</h3>
+  <div class="card-body">
+    <h4 class="card-title">{{this.title}}</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{this.description}}</p>
+  </div>
+  <div class="card-body">
+    <a href="/reviews/{{this._id}}" class="btn btn-primary">See full review</a>
+    
+  </div>
+  <div class="card-footer text-muted">
+    Created on: {{this.createdAt}}
+  </div>
+  </div>
+
+
