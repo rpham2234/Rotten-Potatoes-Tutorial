@@ -3,6 +3,7 @@
 <a href="/" class="btn btn-primary">Back to Home</a>
   <div class="col-sm-6 col-sm-offset-3">
     <h1>{{review.title}}</h1>
+    <p class="text-muted">Created on: {{review.createdAt}}</p>
     <h2>{{review.movieTitle}}</h2>
     <p>{{review.description}}</p>
     <p><a href="/reviews/{{review._id}}/edit">Edit</a></p>
