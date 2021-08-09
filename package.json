@@ -17,6 +17,7 @@
     "moment": "^2.29.1",
     "mongodb": "^3.6.8",
     "mongoose": "^5.13.0",
+    "moviedb-promise": "^3.1.9",
     "nodemon": "^2.0.12"
   },
   "devDependencies": {

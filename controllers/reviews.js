@@ -12,7 +12,7 @@ module.exports = (app) => {
   app.get('/', (req, res) => {
       res.render('home', { msg: 'Handlebars are Cool!' });
     })
-  */
+  
   //Homepage
   app.get('/', (req, res) => {
     Review.find({}).lean()
@@ -23,7 +23,7 @@ module.exports = (app) => {
         console.log(err);
       })
   })
-  
+  */
   //opens a form to create the review
   app.get('/reviews/new', (req, res) => {
     res.render("reviews-new", {title: "New Review"});

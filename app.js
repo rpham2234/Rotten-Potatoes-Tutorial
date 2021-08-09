@@ -24,6 +24,7 @@ app.use(methodOverride('_method'));
 //Locally added Modules. Our routes live here.
 const reviews = require('./controllers/reviews')(app);
 const comments = require('./controllers/comments')(app);
+const movies = require('./controllers/movies')(app);
 
 /* OUR MOCK ARRAY OF PROJECTS
 let reviews = [
